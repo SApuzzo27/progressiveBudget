@@ -3,6 +3,7 @@ const DATA_CACHE_NAME = "data-cache-v1";
 const FILES_TO_CACHE = [
   "/",
   "/index.html",
+  "/service-worker.js",
   "/manifest.webmanifest",
   "/assets/style.css",
   "/assets/index.js",
@@ -67,8 +68,8 @@ self.addEventListener("fetch", function(evt) {
     }).catch(err => console.log(err))
     );
 
-
-    } else {
+    return;
+  }
 
 evt.respondWith(
     caches.open(CACHE_NAME).then(cache => {
@@ -77,5 +78,4 @@ evt.respondWith(
         });
       })
     );
-  }
 });
